@@ -1,0 +1,18 @@
+{
+  "name": "rad-plugins",
+  "owner": {
+    "name": "Rad",
+    "email": "hellocomplianceiv@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "architecture-planning-rad",
+      "source": "./plugins/architecture-planning-rad",
+      "description": "Architecture planning - Rad: engineering-grade Architecture & Build Plan PDFs - phased work packages with dependency linkage, acceptance gates, vector diagrams, and the full implementation plan embedded as an appendix.",
+      "version": "0.1.0",
+      "author": { "name": "Rad" },
+      "keywords": ["architecture", "build-plan", "wbs", "pdf", "planning"]
+    }
+  ]
+}
+
