@@ -1,0 +1,8 @@
+{
+  "name": "architecture-planning-rad",
+  "version": "0.1.0",
+  "description": "Architecture planning - Rad: produce engineering-grade Architecture & Build Plan PDFs for any project - phased work packages with dependency linkage, acceptance gates, vector diagrams, and the full implementation plan embedded as an appendix.",
+  "author": { "name": "Rad" },
+  "keywords": ["architecture", "build-plan", "wbs", "pdf", "planning"]
+}
+
