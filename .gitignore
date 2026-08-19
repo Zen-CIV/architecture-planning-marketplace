@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+prospecting/tools/snapshots/
+prospecting/tools/harvest_data/
