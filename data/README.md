@@ -8,7 +8,12 @@ columns appended:
   professional networks, archives) with no cooperation from the target company.
 - **Public collection route** — the specific public source or technique for that datapoint.
 
-`datapoint_catalog_public_only.csv` is the same file filtered to `Publicly collectible = Yes`.
+`datapoint_catalog_collectible.csv` is the working sheet: the 134 rows marked `Yes` or
+`Partial` — everything the public web can contribute to. It adds two more columns,
+**What the public web gives you** and **What it does not give you**, so each `Partial` row
+states its own limit rather than leaving you to guess.
+
+`datapoint_catalog_public_only.csv` is the strict subset: the 109 `Yes` rows only.
 
 ## Marking scheme
 
@@ -20,6 +25,24 @@ columns appended:
 | `Derived` | Not collected at all — computed from other datapoints. The route column notes whether its inputs are public. | 12 |
 
 `Yes` and `Partial` together cover 134 of 182 datapoints (74%).
+
+## What `Partial` actually covers
+
+The 25 `Partial` rows are three distinct situations, all named per-row in the
+`What it does not give you` column:
+
+1. **Existence is public, magnitude is not.** A vendor case study proves ringless voicemail
+   is in use; it will not tell you the volume. (Ringless voicemail, prerecorded voice,
+   dialer platform, BPO, call recording.)
+2. **The stated commitment is public, the practice is not.** A published DNC policy states a
+   10-day honoring window — a quotable commitment, but not evidence it is met.
+   (Honoring window, revocation methods, calling window, policy on demand.)
+3. **The record is public but access is not free.** State-court dockets and phone line-type
+   classification are public or commercially available, but paywalled or per-county.
+   (State court TCPA matters, line type per number.)
+
+Practical rule: a `Partial` is usually strong enough to open a conversation with, and not
+strong enough to assert as a finding.
 
 ## Notes on the judgement calls
 
