@@ -1,0 +1,21 @@
+{
+  "title": "CiV Dossier Engine",
+  "subtitle": "Architecture & Build Plan - n8n + Supabase + Kimi K2 / DeepSeek V3",
+  "version": "1.0",
+  "date": "2026-08-20",
+  "footer": "CiV Dossier Engine - Architecture & Build Plan",
+  "meta": [
+    ["Owner", "Rad - Technical Operations, Compliance IV"],
+    ["Requested by", "Stu - Sales Lead"],
+    ["Scope", "504 prospects x 134 datapoints, one dossier per company"],
+    ["Stack", "n8n (Hostinger) - Supabase hoyinfxpotpwkhzsgime - OpenRouter"],
+    ["Structure", "Part I architecture + Appendix A implementation plan"]
+  ],
+  "sources": [
+    {"path": "part1.md", "shift": 0},
+    {"path": "/home/user/architecture-planning-marketplace/plans/civ-dossier-engine-implementation.md",
+     "shift": 1, "skip_until": "\\*\\*Goal:\\*\\*"}
+  ],
+  "diagrams_module": "diagrams.py",
+  "output": "CiV-Dossier-Engine-Architecture.pdf"
+}
