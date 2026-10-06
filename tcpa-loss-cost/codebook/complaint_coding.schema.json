@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CiV TCPA complaint coding record",
+  "description": "One record per docket, produced by a human coder or the LLM classifier under CODEBOOK.md. Every property is required; absent values are null or an empty array. Kept to the JSON Schema subset that strict structured-output modes accept (no if/then, no length keywords). Cross-field rules enforced by the validator, not this schema: (1) STATE_STATUTE claims need state and citation_as_written; OTHER_FEDERAL claims need citation_as_written; (2) llm records need a verbatim quote of 40 words or fewer in every non-null evidence object, and each quote must be found in the complaint text; (3) when a2_statute_scope is out_of_scope or a1_document_type is not_a_complaint, b_claims is empty; (4) e2-e5 are null when e1_is_class_action is false.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "codebook_version",
+    "docket",
+    "coder",
+    "a1_document_type",
+    "a2_statute_scope",
+    "a3_total_counts",
+    "a3_telemarketing_counts",
+    "a4_companion_claims",
+    "b_claims",
+    "c1_revocation_alleged",
+    "c2_ai_voice_alleged",
+    "c3_lead_gen_alleged",
+    "c4_third_party_caller_alleged",
+    "c5_wrong_number_alleged",
+    "c6_prior_relationship",
+    "d1_channels",
+    "d2_contacts_to_plaintiff",
+    "d3_first_contact",
+    "d3_last_contact",
+    "e1_is_class_action",
+    "e2_class_count",
+    "e3_class_size_numeric",
+    "e4_class_size_text",
+    "e5_class_lookback_years",
+    "f1_defendants",
+    "f3_industry_group",
+    "f4_product_promoted",
+    "f5_plaintiff_state",
+    "f6_pro_se",
+    "f7_plaintiff_counsel",
+    "notes"
+  ],
+  "properties": {
+    "codebook_version": {
+      "type": "string",
+      "enum": ["0.1"]
+    },
+    "docket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["court_id", "docket_number"],
+      "properties": {
+        "court_id": { "type": "string", "description": "CourtListener court id, e.g. flsd" },
+        "docket_number": { "type": "string" }
+      }
+    },
+    "coder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string", "enum": ["human", "llm"] },
+        "id": { "type": "string", "description": "Coder initials for humans; model id plus prompt_version for LLM runs" }
+      }
+    },
+    "a1_document_type": {
+      "type": "string",
+      "enum": ["original", "amended", "removed_state_complaint", "not_a_complaint"]
+    },
+    "a2_statute_scope": {
+      "type": "string",
+      "enum": ["federal_tcpa", "state_only", "out_of_scope"]
+    },
+    "a3_total_counts": { "type": ["integer", "null"], "minimum": 0 },
+    "a3_telemarketing_counts": { "type": ["integer", "null"], "minimum": 0 },
+    "a4_companion_claims": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["fdcpa", "fcra", "state_udap", "privacy_tort", "contract", "other"]
+      }
+    },
+    "b_claims": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim" }
+    },
+    "c1_revocation_alleged": { "$ref": "#/$defs/flag" },
+    "c2_ai_voice_alleged": { "$ref": "#/$defs/flag" },
+    "c3_lead_gen_alleged": { "$ref": "#/$defs/flag" },
+    "c4_third_party_caller_alleged": { "$ref": "#/$defs/flag" },
+    "c5_wrong_number_alleged": { "$ref": "#/$defs/flag" },
+    "c6_prior_relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidence"],
+      "properties": {
+        "value": {
+          "type": "string",
+          "enum": ["customer_or_inquiry", "no_relationship_alleged", "not_stated"]
+        },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "d1_channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["voice", "text", "ringless_voicemail", "fax", "unspecified"]
+      }
+    },
+    "d2_contacts_to_plaintiff": { "type": ["integer", "null"], "minimum": 1 },
+    "d3_first_contact": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$",
+      "description": "YYYY-MM-DD or YYYY-MM, as alleged"
+    },
+    "d3_last_contact": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$",
+      "description": "YYYY-MM-DD or YYYY-MM, as alleged"
+    },
+    "e1_is_class_action": { "type": "boolean" },
+    "e2_class_count": { "type": ["integer", "null"], "minimum": 1 },
+    "e3_class_size_numeric": { "type": ["integer", "null"], "minimum": 1 },
+    "e4_class_size_text": { "type": ["string", "null"] },
+    "e5_class_lookback_years": { "type": ["number", "null"], "minimum": 0 },
+    "f1_defendants": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/defendant" }
+    },
+    "f3_industry_group": {
+      "type": "string",
+      "enum": [
+        "insurance",
+        "warranty",
+        "lending_credit",
+        "debt_collection",
+        "real_estate",
+        "solar_energy",
+        "home_services",
+        "healthcare",
+        "education",
+        "retail_ecommerce",
+        "auto",
+        "telecom_tech",
+        "travel_hospitality",
+        "marketing_services",
+        "political_nonprofit",
+        "other",
+        "unknown"
+      ]
+    },
+    "f4_product_promoted": { "type": ["string", "null"] },
+    "f5_plaintiff_state": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z]{2}$",
+      "description": "USPS two-letter code for the first-named plaintiff's alleged residence"
+    },
+    "f6_pro_se": { "type": "boolean" },
+    "f7_plaintiff_counsel": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Anything the codebook did not anticipate; one or two sentences"
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["page", "quote"],
+      "properties": {
+        "page": { "type": ["integer", "null"], "minimum": 1 },
+        "quote": {
+          "type": ["string", "null"],
+          "description": "Verbatim from the complaint, 40 words or fewer. Required for llm records (enforced by the quote check); optional for humans."
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "state", "citation_as_written", "evidence"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ATDS",
+            "ARTIFICIAL_PRERECORDED",
+            "NATIONAL_DNC",
+            "INTERNAL_DNC",
+            "CALLING_HOURS",
+            "JUNK_FAX",
+            "STATE_STATUTE",
+            "OTHER_FEDERAL"
+          ]
+        },
+        "state": {
+          "type": ["string", "null"],
+          "pattern": "^[A-Z]{2}$",
+          "description": "Required for STATE_STATUTE; null otherwise"
+        },
+        "citation_as_written": {
+          "type": ["string", "null"],
+          "description": "Required for STATE_STATUTE and OTHER_FEDERAL; optional otherwise"
+        },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "flag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidence"],
+      "properties": {
+        "value": { "type": "string", "enum": ["yes", "no", "unclear"] },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "defendant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name_as_written", "role"],
+      "properties": {
+        "name_as_written": { "type": "string" },
+        "role": {
+          "type": "string",
+          "enum": ["seller", "caller_vendor", "lead_generator", "platform", "individual", "unclear"]
+        }
+      }
+    }
+  }
+}

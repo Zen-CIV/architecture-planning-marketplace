@@ -1,0 +1,64 @@
+{
+  "codebook_version": "0.1",
+  "docket": { "court_id": "example", "docket_number": "0:00-cv-00000" },
+  "coder": { "type": "llm", "id": "example-model / prompt v0.1" },
+  "a1_document_type": "original",
+  "a2_statute_scope": "federal_tcpa",
+  "a3_total_counts": 3,
+  "a3_telemarketing_counts": 3,
+  "a4_companion_claims": [],
+  "b_claims": [
+    {
+      "type": "NATIONAL_DNC",
+      "state": null,
+      "citation_as_written": "47 U.S.C. § 227(c)(5); 47 C.F.R. § 64.1200(c)(2)",
+      "evidence": { "page": 11, "quote": "Plaintiff's number has been registered on the National Do Not Call Registry since 2019." }
+    },
+    {
+      "type": "INTERNAL_DNC",
+      "state": null,
+      "citation_as_written": "47 C.F.R. § 64.1200(d)",
+      "evidence": { "page": 12, "quote": "Defendant failed to honor Plaintiff's request to stop and failed to maintain a written do-not-call policy." }
+    },
+    {
+      "type": "STATE_STATUTE",
+      "state": "FL",
+      "citation_as_written": "Fla. Stat. § 501.059",
+      "evidence": { "page": 13, "quote": "COUNT III Violation of the Florida Telephone Solicitation Act, Fla. Stat. § 501.059" }
+    }
+  ],
+  "c1_revocation_alleged": {
+    "value": "yes",
+    "evidence": { "page": 6, "quote": "Plaintiff replied STOP on April 9, 2025. Defendant sent three more text messages after that date." }
+  },
+  "c2_ai_voice_alleged": { "value": "no", "evidence": null },
+  "c3_lead_gen_alleged": {
+    "value": "yes",
+    "evidence": { "page": 5, "quote": "Fictional Leads Co. sold Plaintiff's number to Fictional Solar Co. as a purported solar lead." }
+  },
+  "c4_third_party_caller_alleged": { "value": "no", "evidence": null },
+  "c5_wrong_number_alleged": { "value": "no", "evidence": null },
+  "c6_prior_relationship": {
+    "value": "no_relationship_alleged",
+    "evidence": { "page": 4, "quote": "Plaintiff has never been a customer of either Defendant." }
+  },
+  "d1_channels": ["text"],
+  "d2_contacts_to_plaintiff": 7,
+  "d3_first_contact": "2025-04-02",
+  "d3_last_contact": "2025-05-19",
+  "e1_is_class_action": true,
+  "e2_class_count": 2,
+  "e3_class_size_numeric": null,
+  "e4_class_size_text": "thousands of persons",
+  "e5_class_lookback_years": 4,
+  "f1_defendants": [
+    { "name_as_written": "Fictional Solar Co.", "role": "seller" },
+    { "name_as_written": "Fictional Leads Co.", "role": "lead_generator" }
+  ],
+  "f3_industry_group": "solar_energy",
+  "f4_product_promoted": "residential solar panel installation",
+  "f5_plaintiff_state": "FL",
+  "f6_pro_se": false,
+  "f7_plaintiff_counsel": ["Fictional Counsel PLLC"],
+  "notes": "FICTIONAL EXAMPLE: illustrates the record format only. Not a real case, party, firm, or quote."
+}
