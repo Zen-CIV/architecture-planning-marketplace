@@ -305,5 +305,5 @@ Fields that miss a gate are published with their measured κ and the label "not 
 1. **Debt collectors.** They are a large share of TCPA suits, but they aren't CiV's or Falcon's insureds. The proposal is to code them, then report them as a separate row so they don't inflate telemarketing frequency.
 2. **Class vs. individual suits.** Severity differs by orders of magnitude between the two. The proposal is to always report frequency and severity split by E1.
 3. **Second coder.** The candidates are Connor or a paid contractor. Each coder needs about 13 hours: 65 complaints at 12 minutes each, spread over two weeks.
-4. **Legal read.** Send rules R1–R8 to Larry Zanger's network for one 30-minute read before coding starts. A defense lawyer's objection now is cheaper than a κ failure later.
+4. **Legal read (optional; no reviewer identified).** If a practicing TCPA lawyer becomes available, ask for a 30-minute read of rules R1–R8 before coding starts. The agreement checks catch rules that are ambiguous, but not rules that are clear and legally wrong.
 5. **Unit of severity when cases consolidate (MDL, related cases).** The choice is per docket or per consolidated group. The proposal is to code per docket and link consolidated dockets in Instrument 2.
